@@ -103,6 +103,13 @@ public class ProductArrayService {
         return result;
     }
 
+    public List<ProductArrayCalculationRecord> getHistory(String searchTerm) {
+        if (searchTerm == null || searchTerm.isEmpty()) {
+            return productArrayRepository.findAll();
+        }
+        return productArrayRepository.findByCommentContainingIgnoreCase(searchTerm);
+    }
+
     public void saveProductArrayCalculationRecord(int[] inputArray, int[] outputArray, String comment) {
         ProductArrayCalculationRecord record = new ProductArrayCalculationRecord(Arrays.toString(inputArray), Arrays.toString(outputArray), comment, LocalDateTime.now());
         productArrayRepository.save(record);
