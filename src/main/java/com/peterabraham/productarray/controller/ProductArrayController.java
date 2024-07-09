@@ -33,4 +33,18 @@ public class ProductArrayController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
+
+    @PostMapping("/calculate/b")
+    public ResponseEntity<String> calculateB(@RequestBody InputProductDTO inputRequest){
+        try {
+            int[] inputArray = inputRequest.getInputArray();
+            String comment = inputRequest.getComment();
+            int[] outputArray = productArrayService.calculationB(inputArray);
+
+            productArrayService.saveProductArrayCalculationRecord(inputArray, outputArray, comment);
+            return ResponseEntity.ok().build();
+        } catch(Exception e){
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 }
