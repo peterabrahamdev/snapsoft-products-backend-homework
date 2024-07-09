@@ -46,4 +46,7 @@ To run the application locally:
   ```
   http://localhost:3000/api/history?search=this%20is%20a%20test
   ```
-  
+
+## Notes
+- The application uses logging which facilitates seeing the calculations' results on the command-line.
+- In a production environment, environment variables should be used for the credentials of the database in the `application.yaml`.
