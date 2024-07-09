@@ -63,5 +63,10 @@ public class ProductArrayController {
         }
     }
 
+    @GetMapping("/history")
+    public ResponseEntity<List<ProductArrayCalculationRecord>> history(@RequestParam(value = "search", required = false) String searchTerm) {
+        List<ProductArrayCalculationRecord> records = productArrayService.getHistory(searchTerm);
+        return ResponseEntity.ok(records);
+    }
 
 }
