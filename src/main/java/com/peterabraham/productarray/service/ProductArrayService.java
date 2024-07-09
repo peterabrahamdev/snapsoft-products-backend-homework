@@ -46,22 +46,39 @@ public class ProductArrayService {
         }
 
         if (memoizedCalculations.containsKey(Arrays.toString(inputArray))) {
-            logger.info("Using memoized calculation");
-            for (HashMap.Entry<String, int[]> entry : memoizedCalculations.entrySet()) {
-                logger.info(entry.getKey() + " " + Arrays.toString(entry.getValue()));
-            }
-            return memoizedCalculations.get(Arrays.toString(inputArray));
+            int[] outputArray = memoizedCalculations.get(Arrays.toString(inputArray));
+            logger.info("Using a memoized value for calculation a)");
+            logger.info("Result of calculation a): " + Arrays.toString(outputArray));
+
+            return outputArray;
         } else {
-            logger.info("Using a not memoized calculation");
-            for (HashMap.Entry<String, int[]> entry : memoizedCalculations.entrySet()) {
-                logger.info(entry.getKey() + " " + Arrays.toString(entry.getValue()));
-            }
+            logger.info("Using a not memoized value for calculation a)");
             int product = Arrays.stream(inputArray).reduce(1, (a, b) -> a * b);
             int[] result = Arrays.stream(inputArray).map(i -> product / i).toArray();
             memoizedCalculations.putIfAbsent(Arrays.toString(inputArray), result);
+            logger.info("Result of calculation a): " + Arrays.toString(result));
             return result;
         }
+    }
 
+    public int[] calculationB(int[] inputArray) {
+        if (inputArray == null || inputArray.length == 0) {
+            throw new IllegalArgumentException("The input array must not be empty!");
+        }
+
+        int[] outputArray = new int[inputArray.length];
+
+        for (int i = 0; i < inputArray.length; i++) {
+            int currentProduct = 1;
+            for (int j = 0; j < inputArray.length; j++) {
+                if (i != j) {
+                    currentProduct *= inputArray[j];
+                }
+            }
+            outputArray[i] = currentProduct;
+        }
+        logger.info("Result of calculation b): " + Arrays.toString(outputArray));
+        return outputArray;
     }
 
     public void saveProductArrayCalculationRecord(int[] inputArray, int[] outputArray, String comment) {
