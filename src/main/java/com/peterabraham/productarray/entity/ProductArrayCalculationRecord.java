@@ -7,7 +7,7 @@ import jakarta.persistence.Id;
 
 import java.time.LocalDateTime;
 
-@Entity
+@Entity(name = "product_array_calculation")
 public class ProductArrayCalculationRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
