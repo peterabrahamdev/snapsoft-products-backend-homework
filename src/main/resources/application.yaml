@@ -1,0 +1,13 @@
+server:
+  port: 3000
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/product_array
+    username: postgres
+    password: snapsoft
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
