@@ -98,6 +98,7 @@ public class ProductArrayService {
             suffixProduct *= input[i];
         }
 
+        logger.info("Result of calculation c): " + Arrays.toString(result));
         return result;
     }
 
